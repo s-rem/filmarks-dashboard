@@ -6,58 +6,153 @@
 <title>Filmarks Dashboard</title>
 
 <style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
 body{
-    background:#f3f3f3;
-    font-family:-apple-system;
-    margin:20px;
+    background:#121212;
+    color:#ffffff;
+    font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;
+}
+
+header{
+    background:#1f1f1f;
+    padding:24px;
+    text-align:center;
+    border-bottom:1px solid #333;
+}
+
+header h1{
+    font-size:30px;
+}
+
+header p{
+    color:#bbbbbb;
+    margin-top:8px;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:24px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:16px;
 }
 
 .card{
-    background:white;
-    padding:25px;
-    border-radius:18px;
-    max-width:700px;
-    margin:auto;
+    background:#1e1e1e;
+    border-radius:16px;
+    padding:20px;
 }
 
-h1{
-    text-align:center;
+.card h2{
+    font-size:16px;
+    color:#aaaaaa;
+}
+
+.value{
+    font-size:34px;
+    margin-top:12px;
+    font-weight:bold;
+}
+
+.section{
+    margin-top:30px;
+}
+
+.section h2{
+    margin-bottom:15px;
 }
 
 button{
     width:100%;
-    padding:15px;
+    background:#00c853;
+    color:white;
+    border:none;
+    padding:16px;
+    border-radius:12px;
     font-size:18px;
+    cursor:pointer;
 }
 
+button:hover{
+    opacity:.9;
+}
+
+footer{
+    text-align:center;
+    color:#777;
+    margin:40px 0;
+}
 </style>
 
 </head>
 
 <body>
 
-<div class="card">
-
+<header>
 <h1>🎬 Filmarks Dashboard</h1>
+<p>REM's Movie Database</p>
+</header>
 
-<p>REMさん専用ダッシュボード</p>
+<div class="container">
 
-<hr>
+<div class="cards">
 
-<h2>これから追加する機能</h2>
+<div class="card">
+<h2>🎥 総鑑賞本数</h2>
+<div class="value">--</div>
+</div>
 
-<ul>
-<li>CSV出力</li>
-<li>年間ベスト10</li>
-<li>評価ランキング</li>
-<li>鑑賞本数</li>
-<li>ジャンル分析</li>
-</ul>
+<div class="card">
+<h2>⭐ 平均評価</h2>
+<div class="value">--</div>
+</div>
 
-<button>CSVを作成（準備中）</button>
+<div class="card">
+<h2>🏆 ベスト作品</h2>
+<div class="value">--</div>
+</div>
+
+<div class="card">
+<h2>📅 今年の鑑賞本数</h2>
+<div class="value">--</div>
+</div>
 
 </div>
+
+<div class="section">
+
+<h2>📥 データ</h2>
+
+<button>
+Filmarksデータを読み込む
+</button>
+
+</div>
+
+<div class="section">
+
+<h2>🏅 ランキング</h2>
+
+<p>データを読み込むと、ベスト10がここに表示されます。</p>
+
+</div>
+
+</div>
+
+<footer>
+
+Made with ❤️ for REM
+
+</footer>
 
 </body>
 </html>
