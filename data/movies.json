@@ -1,0 +1,13 @@
+[
+  {
+    "id": "2026-0001",
+    "title": "プロジェクト・ヘイル・メアリー",
+    "production_year": 2026,
+    "japan_release_date": "2026-03-20",
+    "watched_date": "2026-03-20",
+    "rating": 3.8,
+    "review": "テストレビュー",
+    "genres": ["SF"],
+    "director": ["フィル・ロード", "クリストファー・ミラー"]
+  }
+]
