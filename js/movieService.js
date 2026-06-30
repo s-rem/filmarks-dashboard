@@ -7,7 +7,7 @@
  */
 
 async function loadMovies() {
-    const response = await fetch("data/movies.json");
+    const response = await fetch(CONFIG.MOVIES_JSON_PATH);
 
     if (!response.ok) {
         throw new Error(
