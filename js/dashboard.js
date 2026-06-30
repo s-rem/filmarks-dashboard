@@ -1,20 +1,47 @@
+/**
+ * dashboard.js
+ *
+ * ダッシュボードを更新する
+ */
+ 
+/**
+ * ダッシュボードで利用するDOM 要素
+ */
+
+const totalMoviesElement =
+    document.getElementById("totalMovies");
+
+const averageRatingElement =
+    document.getElementById("averageRating");
+
+const bestMovieElement =
+    document.getElementById("bestMovie");
+
+const yearMoviesElement =
+    document.getElementById("yearMovies");
+
+/**
+ * ダッシュボードの統計情報を更新する
+ *
+ * @param {Array} movies 映画データ
+ */
 function updateDashboard(movies) {
 
-    document.getElementById("totalMovies").textContent = movies.length;
+    totalMoviesElement.textContent = movies.length;
 
     const totalRating = movies.reduce(
         (sum, movie) => sum + movie.rating,
         0
     );
 
-    document.getElementById("averageRating").textContent =
+    averageRatingElement.textContent =
         (totalRating / movies.length).toFixed(1);
 
     const bestMovie = movies.reduce((best, movie) =>
         movie.rating > best.rating ? movie : best
     );
 
-    document.getElementById("bestMovie").textContent =
+    bestMovieElement.textContent =
         bestMovie.title;
 
     const currentYear = new Date().getFullYear();
@@ -23,6 +50,6 @@ function updateDashboard(movies) {
         new Date(movie.watched_date).getFullYear() === currentYear
     ).length;
 
-    document.getElementById("yearMovies").textContent =
+    yearMoviesElement.textContent =
         yearCount;
 }

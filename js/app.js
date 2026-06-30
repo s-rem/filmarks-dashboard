@@ -1,3 +1,9 @@
+/** 
+ * app.js
+ *
+ * アプリケーションを起動する
+ */
+
 async function start() {
 
     try {
@@ -8,9 +14,7 @@ async function start() {
 
         showMovieList(movies);
 
-    }
-
-    catch(error){
+    } catch (error) {
 
         console.error(error);
 
