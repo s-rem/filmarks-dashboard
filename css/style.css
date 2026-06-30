@@ -84,4 +84,25 @@ footer{
     color:#777;
     margin:40px 0;
 }
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th,td{
+    padding:12px;
+    border-bottom:1px solid #333;
+    text-align:left;
+}
+
+th{
+    color:#00c853;
+}
+
+tbody tr:hover{
+    background:#222;
+}
+
 </style>

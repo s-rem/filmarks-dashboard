@@ -9,6 +9,7 @@ async function loadMovies() {
         const movies = await response.json();
 
         updateDashboard(movies);
+        showMovieList(movies);
 
     } catch (error) {
         console.error(error);
@@ -45,6 +46,27 @@ function updateDashboard(movies) {
 
     document.getElementById("yearMovies").textContent =
         yearCount;
+}
+
+function showMovieList(movies){
+
+    const tbody=document.getElementById("movieTableBody");
+
+    tbody.innerHTML="";
+
+    movies.forEach(movie=>{
+
+        tbody.innerHTML+=`
+            <tr>
+                <td>${movie.rating}</td>
+                <td>${movie.title}</td>
+                <td>${movie.production_year}</td>
+                <td>${movie.watched_date}</td>
+            </tr>
+        `;
+
+    });
+
 }
 
 loadMovies();
