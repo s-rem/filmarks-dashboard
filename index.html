@@ -67,8 +67,16 @@ Filmarksデータを読み込む
             id="searchBox"
             placeholder="タイトルを検索">
 
-    </div>
-
+        <select id="sortSelect">
+            <option value="watched_desc">
+                鑑賞日（新しい順）
+            </option>
+            <option value="rating_desc">
+                評価（高い順）
+            </option>
+        </select>
+ 
+     </div>
     <table id="movieTable">
         <thead>
             <tr>
@@ -89,14 +97,16 @@ Filmarksデータを読み込む
 
 <footer>
 
-Made with ❤️ for REM
+<p>
+    Made with ❤️ for REM
+</p>
 
 <p id="version">
     Version: v0.1.0
 </p>
 
 <p id="latest">
-    Latest: Add sample movie data
+    Latest: Add movie sorting
 </p>
 
 </footer>
@@ -106,6 +116,7 @@ Made with ❤️ for REM
 <script src="js/dashboard.js"></script>
 <script src="js/movieTable.js"></script>
 <script src="js/search.js"></script>
+<script src="js/sort.js"></script>
 <script src="js/app.js"></script>
 
 </body>

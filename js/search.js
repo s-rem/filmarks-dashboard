@@ -3,54 +3,61 @@
  *
  * 映画一覧を検索する
  */
- 
+
 /**
  * DOM 要素
  */
 
 const searchResultElement =
     document.getElementById("searchResult");
-    const searchBoxElement =
-        document.getElementById("searchBox");
+
+const searchBoxElement =
+    document.getElementById("searchBox");
 
 /**
  * 検索機能を初期化する
- *
- * @param {Array} movies 映画データ
  */
-function initializeSearch(movies) {
+function initializeSearch() {
 
-    // ← 初期表示時の件数を表示
-    updateSearchResult(movies.length);
+    searchBoxElement.addEventListener(
+        "input",
+        () => {
 
-    searchBoxElement.addEventListener("input", () => {
+            refreshMovieList();
 
-        const filteredMovies =
-            filterMovies(
-                movies,
-                searchBoxElement.value
-            );
-
-        updateSearchResult(filteredMovies.length);
-        showMovieList(filteredMovies);
-
-    });
+        }
+    );
 
 }
+
+/**
+ * 検索文字列を取得する
+ *
+ * @returns {string} 検索文字列
+ */
+function getSearchKeyword() {
+
+    return searchBoxElement.value;
+
+}
+
 /**
  * タイトルで映画を検索する
  *
  * @param {Array} movies 映画データ
- * @param {string} keyword 検索文字列
  * @returns {Array} 検索結果
  */
-function filterMovies(movies, keyword) {
+function filterMovies(movies) {
 
     const searchKeyword =
-        keyword.trim().toLowerCase();
+        getSearchKeyword()
+            .trim()
+            .toLowerCase();
 
     if (searchKeyword === "") {
+
         return movies;
+
     }
 
     return movies.filter(movie =>
@@ -81,4 +88,3 @@ function updateSearchResult(count) {
         `全${count}件`;
 
 }
-
