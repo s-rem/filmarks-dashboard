@@ -15,9 +15,8 @@ async function start() {
         updateDashboard(movies);
 
         showMovieList(movies);
- 
 
-initializeSearch(movies)
+        initializeSearch(movies)
 
     } catch (error) {
 
