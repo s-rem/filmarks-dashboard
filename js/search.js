@@ -3,6 +3,15 @@
  *
  * 映画一覧を検索する
  */
+ 
+/**
+ * DOM 要素
+ */
+
+const searchResultElement =
+    document.getElementById("searchResult");
+    const searchBoxElement =
+        document.getElementById("searchBox");
 
 /**
  * 検索機能を初期化する
@@ -11,8 +20,8 @@
  */
 function initializeSearch(movies) {
 
-    const searchBoxElement =
-        document.getElementById("searchBox");
+    // ← 初期表示時の件数を表示
+    updateSearchResult(movies.length);
 
     searchBoxElement.addEventListener("input", () => {
 
@@ -22,6 +31,7 @@ function initializeSearch(movies) {
                 searchBoxElement.value
             );
 
+        updateSearchResult(filteredMovies.length);
         showMovieList(filteredMovies);
 
     });
@@ -50,3 +60,16 @@ function filterMovies(movies, keyword) {
     );
 
 }
+
+/**
+ * 検索結果件数を更新する
+ *
+ * @param {number} count 件数
+ */
+function updateSearchResult(count) {
+
+    searchResultElement.textContent =
+        `全${count}件`;
+
+}
+
