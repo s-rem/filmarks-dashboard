@@ -68,6 +68,15 @@ function filterMovies(movies, keyword) {
  */
 function updateSearchResult(count) {
 
+    if (count === 0) {
+
+        searchResultElement.textContent =
+            "該当する映画はありません";
+
+        return;
+
+    }
+
     searchResultElement.textContent =
         `全${count}件`;
 
