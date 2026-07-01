@@ -9,5 +9,60 @@
     "review": "テストレビュー",
     "genres": ["SF"],
     "director": ["フィル・ロード", "クリストファー・ミラー"]
+  },
+  {
+    "id": "2026-0002",
+    "title": "ミッキー17",
+    "production_year": 2025,
+    "japan_release_date": "2025-03-28",
+    "watched_date": "2025-03-29",
+    "rating": 4.2,
+    "review": "",
+    "genres": ["SF"],
+    "director": ["ポン・ジュノ"]
+  },
+  {
+    "id": "2026-0003",
+    "title": "インターステラー",
+    "production_year": 2014,
+    "japan_release_date": "2014-11-22",
+    "watched_date": "2025-06-08",
+    "rating": 5.0,
+    "review": "",
+    "genres": ["SF", "ドラマ"],
+    "director": ["クリストファー・ノーラン"]
+  },
+  {
+    "id": "2026-0004",
+    "title": "マッドマックス 怒りのデス・ロード",
+    "production_year": 2015,
+    "japan_release_date": "2015-06-20",
+    "watched_date": "2026-01-11",
+    "rating": 4.6,
+    "review": "",
+    "genres": ["アクション"],
+    "director": ["ジョージ・ミラー"]
+  },
+  {
+    "id": "2026-0005",
+    "title": "AKIRA",
+    "production_year": 1988,
+    "japan_release_date": "1988-07-16",
+    "watched_date": "2024-10-13",
+    "rating": 4.0,
+    "review": "",
+    "genres": ["アニメ", "SF"],
+    "director": ["大友克洋"]
+  },
+  {
+    "id": "2026-0006",
+    "title": "セブン",
+    "production_year": 1995,
+    "japan_release_date": "1996-01-27",
+    "watched_date": "2026-05-03",
+    "rating": 4.8,
+    "review": "",
+    "genres": ["サスペンス"],
+    "director": ["デヴィッド・フィンチャー"]
   }
 ]
