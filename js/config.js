@@ -14,7 +14,7 @@ const APP_CONFIG = {
 
     name: "Filmarks Dashboard",
 
-    version: "v0.1.0",
+    version: "v0.2.0",
 
             latest: "Add more sort options"
 
