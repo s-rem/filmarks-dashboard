@@ -4,11 +4,13 @@
  * アプリケーションを起動する
  */
 
+let movies = [];
+
 async function start() {
 
     try {
 
-        const movies = await loadMovies();
+        movies = await loadMovies();
 
         updateDashboard(movies);
 
