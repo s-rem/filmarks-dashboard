@@ -73,8 +73,6 @@ function filterMovies(movies) {
  *
  * @param {number} count 件数
  */
- 
- /**drbug->
 function updateSearchResult(count) {
 
     if (count === 0) {
@@ -88,12 +86,5 @@ function updateSearchResult(count) {
 
     searchResultElement.textContent =
         `全${count}件`;
-
-}
-*/
-function updateSearchResult(message) {
-
-    searchResultElement.textContent =
-        message;
 
 }

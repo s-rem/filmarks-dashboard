@@ -48,8 +48,6 @@ function sortMovies(movies) {
 
     const sortType =
         getSortType();
-        
-updateSearchResult(sortType);
 
     const sortedMovies =
         [...movies];
