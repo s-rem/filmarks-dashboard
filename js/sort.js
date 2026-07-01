@@ -54,23 +54,65 @@ function sortMovies(movies) {
 
     switch (sortType) {
 
-        case "rating_desc":
-
-            sortedMovies.sort(
-                (a, b) => b.rating - a.rating
-            );
-
-            break;
-
         case "watched_desc":
-
-        default:
 
             sortedMovies.sort(
                 (a, b) =>
                     new Date(b.watched_date) -
                     new Date(a.watched_date)
             );
+
+            break;
+
+        case "watched_asc":
+
+            sortedMovies.sort(
+                (a, b) =>
+                    new Date(a.watched_date) -
+                    new Date(b.watched_date)
+            );
+
+            break;
+
+        case "rating_desc":
+
+            sortedMovies.sort(
+                (a, b) =>
+                    b.rating - a.rating
+            );
+
+            break;
+
+        case "rating_asc":
+
+            sortedMovies.sort(
+                (a, b) =>
+                    a.rating - b.rating
+            );
+
+            break;
+
+        case "year_desc":
+
+            sortedMovies.sort(
+                (a, b) =>
+                    b.production_year -
+                    a.production_year
+            );
+
+            break;
+
+        case "year_asc":
+
+            sortedMovies.sort(
+                (a, b) =>
+                    a.production_year -
+                    b.production_year
+            );
+
+            break;
+
+        default:
 
             break;
 

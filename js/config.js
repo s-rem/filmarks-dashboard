@@ -16,6 +16,6 @@ const APP_CONFIG = {
 
     version: "v0.1.0",
 
-    latest: "Show footer from config"
+            latest: "Add more sort options"
 
 };
