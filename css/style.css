@@ -123,4 +123,13 @@ tbody tr:hover{
 
 }
 
+#searchResult {
+
+    margin: 8px 0;
+
+    color: #666;
+
+    font-size: 0.9rem;
+
+}
 </style>
