@@ -3,7 +3,7 @@
  *
  * アプリケーションを起動する
  */
- 
+
 /**
  * DOM 要素
  */
@@ -45,9 +45,14 @@ function refreshMovieList() {
             filteredMovies
         );
 
+    const watchedYearMovies =
+        filterWatchedYear(
+            productionYearMovies
+        );
+
     const sortedMovies =
         sortMovies(
-            productionYearMovies
+            watchedYearMovies
         );
 
     showMovieList(sortedMovies);
@@ -64,15 +69,21 @@ async function start() {
     try {
 
         updateFooter();
-  
+
         movies = await loadMovies();
 
         updateDashboard(movies);
 
         initializeSearch();
 
-        initializeProductionYearFilter(movies);
- 
+        initializeProductionYearFilter(
+            movies
+        );
+
+        initializeWatchedYearFilter(
+            movies
+        );
+
         initializeSort();
 
         refreshMovieList();

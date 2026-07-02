@@ -14,8 +14,8 @@ const APP_CONFIG = {
 
     name: "Filmarks Dashboard",
 
-    version: "v0.2.0",
+    version: "v0.3.0",
 
-    latest: "Add production year filter"
+    latest: "Add watched year filter"
 
 };

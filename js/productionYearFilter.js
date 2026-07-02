@@ -58,21 +58,10 @@ function populateProductionYearFilter(
         (a, b) => b - a
     );
 
-    productionYears.forEach(year => {
-
-        const option =
-            document.createElement(
-                "option"
-            );
-
-        option.value = year;
-
-        option.textContent = year;
-
-        productionYearSelectElement
-            .appendChild(option);
-
-    });
+    populateSelectOptions(
+        productionYearSelectElement,
+        productionYears
+    );
 
 }
 
