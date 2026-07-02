@@ -40,8 +40,15 @@ function refreshMovieList() {
     const filteredMovies =
         filterMovies(movies);
 
+    const productionYearMovies =
+        filterProductionYear(
+            filteredMovies
+        );
+
     const sortedMovies =
-        sortMovies(filteredMovies);
+        sortMovies(
+            productionYearMovies
+        );
 
     showMovieList(sortedMovies);
 
@@ -64,6 +71,8 @@ async function start() {
 
         initializeSearch();
 
+        initializeProductionYearFilter(movies);
+ 
         initializeSort();
 
         refreshMovieList();

@@ -16,6 +16,6 @@ const APP_CONFIG = {
 
     version: "v0.2.0",
 
-            latest: "Add more sort options"
+    latest: "Add production year filter"
 
 };
