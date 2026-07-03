@@ -10,12 +10,16 @@ const CONFIG = {
 
 };
 
+/**
+ * アプリケーション情報
+ */
+
 const APP_CONFIG = {
 
     name: "Filmarks Dashboard",
 
-    version: "v0.3.0",
+    version: "v0.3.1",
 
-    latest: "Add watched year filter"
+    latest: "Add movie detail view"
 
 };

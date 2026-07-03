@@ -1,4 +1,7 @@
-<style>
+/**
+ *style.css
+ */
+
 *{
     margin:0;
     padding:0;
@@ -132,4 +135,34 @@ tbody tr:hover{
     font-size: 0.9rem;
 
 }
-</style>
+/* 映画詳細 */
+
+#movieDetail {
+
+    margin-top: 32px;
+
+    padding: 20px;
+
+    border: 1px solid #333;
+
+    border-radius: 8px;
+
+    background: #1e1e1e;
+
+}
+
+#movieDetail h2 {
+
+    margin-top: 0;
+
+    margin-bottom: 20px;
+
+}
+
+#movieDetail p {
+
+    margin-bottom: 16px;
+
+    line-height: 1.6;
+
+}
