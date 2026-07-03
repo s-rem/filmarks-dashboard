@@ -112,9 +112,9 @@ tbody tr:hover{
 
 .movieLink {
 
-    color: #ffffff;
+    color: #00CCFF;
 
-    text-decoration: none;
+    text-decoration: underline;
 
 }
 
