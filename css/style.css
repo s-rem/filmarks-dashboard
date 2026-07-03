@@ -88,6 +88,8 @@ footer{
     margin:40px 0;
 }
 
+/* 映画リスト */
+
 table{
     width:100%;
     border-collapse:collapse;
@@ -107,6 +109,24 @@ th{
 tbody tr:hover{
     background:#222;
 }
+
+.movieLink {
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+}
+
+.movieLink:hover {
+
+    color: #00c853;
+
+    text-decoration: underline;
+
+}
+
+/* 検索エリア */
 
 .searchArea {
 
@@ -135,6 +155,7 @@ tbody tr:hover{
     font-size: 0.9rem;
 
 }
+
 /* 映画詳細 */
 
 #movieDetail {

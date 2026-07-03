@@ -80,11 +80,23 @@ function updateSearchResult(count) {
         searchResultElement.textContent =
             "該当する映画はありません";
 
+        searchResultElement.style.color =
+            "#ff5252";
+
+        searchResultElement.style.fontSize =
+            "1rem";
+
         return;
 
     }
 
     searchResultElement.textContent =
         `全${count}件`;
+
+    searchResultElement.style.color =
+        "#666";
+
+    searchResultElement.style.fontSize =
+        "0.9rem";
 
 }
