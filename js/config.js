@@ -20,6 +20,6 @@ const APP_CONFIG = {
 
     version: "v0.3.3",
 
-    latest: "color change"
+    latest: "Improve movie list"
 
 };
