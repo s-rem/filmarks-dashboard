@@ -23,30 +23,44 @@ function showMovieDetail(
 ) {
 
     movieDetailElement.innerHTML = `
-        <h2>映画詳細</h2>
+        <div class="detailRating">
+            ⭐ ${movie.rating}
+        </div>
 
-        <p><strong>タイトル</strong><br>
-        ${movie.title}</p>
+        <h2 class="detailTitle">
+            ${movie.title}
+        </h2>
 
-        <p><strong>評価</strong><br>
-        ${movie.rating}</p>
+        <div class="detailItem">
+            <span class="detailLabel">公開年</span>
+            <span>${movie.production_year}</span>
+        </div>
 
-        <p><strong>公開年</strong><br>
-        ${movie.production_year}</p>
+        <div class="detailItem">
+            <span class="detailLabel">鑑賞日</span>
+            <span>${movie.watched_date}</span>
+        </div>
 
-        <p><strong>鑑賞日</strong><br>
-        ${movie.watched_date}</p>
+        <div class="detailItem">
+            <span class="detailLabel">監督</span>
+            <span>${movie.director.join(" / ")}</span>
+        </div>
 
-        <p><strong>監督</strong><br>
-        ${movie.director.join("<br>")}</p>
+        <div class="detailItem">
+            <span class="detailLabel">ジャンル</span>
+            <span>${movie.genres.join(" / ")}</span>
+        </div>
 
-        <p><strong>ジャンル</strong><br>
-        ${movie.genres.join(" / ")}</p>
+        <div class="detailReview">
+            <div class="detailLabel">
+                レビュー
+            </div>
 
-        <p><strong>レビュー</strong><br>
-        ${movie.review || "レビューはありません"}</p>
+            <p>
+                ${movie.review || "レビューはありません"}
+            </p>
+        </div>
     `;
-
 }
 
 /**
