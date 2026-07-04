@@ -59,6 +59,8 @@ function refreshMovieList() {
 
     updateSearchResult(sortedMovies.length);
 
+    clearMovieDetail();
+
 }
 
 /**

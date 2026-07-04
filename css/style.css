@@ -36,14 +36,6 @@ header p{
     padding:24px;
 }
 
-.section{
-    margin-top:30px;
-}
-
-.section h2{
-    margin-bottom:15px;
-}
-
 button{
     width:100%;
     background:#00c853;
@@ -76,12 +68,6 @@ section {
 section h2 {
 
     margin-bottom: 15px;
-
-}
-
-section table {
-
-    width: 100%;
 
 }
 
@@ -140,10 +126,21 @@ tbody tr:hover{
 }
 
 /* 検索エリア */
-
 .searchArea {
 
     margin: 16px 0;
+
+    display: grid;
+
+    gap: 12px;
+
+}
+
+.searchFilters {
+
+    display: flex;
+
+    gap: 12px;
 
 }
 
@@ -151,21 +148,17 @@ tbody tr:hover{
 
     width: 100%;
 
-    max-width: 400px;
-
     padding: 8px 12px;
 
     font-size: 16px;
 
 }
 
-#searchResult {
+#productionYearSelect,
+#watchedYearSelect,
+#sortSelect {
 
-    margin: 8px 0;
-
-    color: #666;
-
-    font-size: 0.9rem;
+    width: 110px;
 
 }
 
@@ -256,38 +249,37 @@ tbody tr:hover{
         font-size: 24px;
 
     }
-
-    .value {
-
-        font-size: 28px;
-
-    }
-
+ 
     .searchArea {
 
-        display: flex;
-
-        flex-direction: column;
-
-        gap: 12px;
+        gap: 10px;
 
     }
 
-    #searchBox,
+    .searchFilters {
+
+        gap: 8px;
+
+    }
+
+    #searchBox {
+
+        font-size: 16px;
+
+    }
+
     #productionYearSelect,
     #watchedYearSelect,
     #sortSelect {
 
-        width: 100%;
+        flex: 1;
 
-        max-width: none;
+        width: auto;
 
-        font-size: 16px;
-
-        padding: 10px;
+        font-size: 14px;
 
     }
-
+ 
     table {
 
         font-size: 14px;

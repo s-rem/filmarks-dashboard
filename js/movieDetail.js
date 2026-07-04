@@ -86,3 +86,18 @@ function showMovieDetailById(
     showMovieDetail(movie);
 
 }
+
+/**
+ * 映画詳細をクリアする
+ */
+function clearMovieDetail() {
+
+    movieDetailElement.innerHTML = `
+        <h2>映画詳細</h2>
+
+        <p>
+            映画を選択してください
+        </p>
+    `;
+
+}

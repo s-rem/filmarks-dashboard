@@ -5,15 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Filmarks Dashboard</title>
 <link rel="stylesheet" href="css/style.css">
-
 </head>
 
 <body>
 
 <header>
 <h1>🎬 Filmarks Dashboard</h1>
-<p>REM's Movie Database<br/>
-</p>
+<p>REM's Movie Database</p>
 </header>
 
 <div class="container">
@@ -72,7 +70,7 @@
 
 </section>
 
-<div class="section">
+<section>
 
 <h2>📥 データ</h2>
 
@@ -80,7 +78,7 @@
 Filmarksデータを読み込む
 </button>
 
-</div>
+</section>
 
 <section>
 
@@ -97,52 +95,54 @@ Filmarksデータを読み込む
             id="searchBox"
             placeholder="タイトルを検索">
 
-        <select id="productionYearSelect">
+        <div class="searchFilters"> 
 
-            <option value="">
-                公開年（すべて）
-            </option>
+            <select id="productionYearSelect">
 
-        </select>
- 
-        <select id="watchedYearSelect">
+                <option value="">
+                    公開年（すべて）
+                </option>
 
-            <option value="">
-                鑑賞年（すべて）
-            </option>
+            </select>
+     
+            <select id="watchedYearSelect">
 
-        </select>
+                <option value="">
+                    鑑賞年（すべて）
+                </option>
 
-        <select id="sortSelect">
+            </select>
 
-            <option value="watched_desc">
-                鑑賞日（新しい順）
-            </option>
+            <select id="sortSelect">
 
-            <option value="watched_asc">
-                鑑賞日（古い順）
-            </option>
+                <option value="watched_desc">
+                    鑑賞日（新しい順）
+                </option>
 
-            <option value="rating_desc">
-                評価（高い順）
-            </option>
+                <option value="watched_asc">
+                    鑑賞日（古い順）
+                </option>
 
-            <option value="rating_asc">
-                評価（低い順）
-            </option>
+                <option value="rating_desc">
+                    評価（高い順）
+                </option>
 
-            <option value="year_desc">
-                公開年（新しい順）
-            </option>
+                <option value="rating_asc">
+                    評価（低い順）
+                </option>
 
-            <option value="year_asc">
-                公開年（古い順）
-            </option>
+                <option value="year_desc">
+                    公開年（新しい順）
+                </option>
 
-        </select> 
- 
+                <option value="year_asc">
+                    公開年（古い順）
+                </option>
+
+            </select> 
+        </div>
     </div>
- 
+
     <table id="movieTable">
         <thead>
             <tr>
@@ -158,16 +158,17 @@ Filmarksデータを読み込む
         </tbody>
 
     </table>
+    
+</section>
 
-    <section id="movieDetail">
+<section id="movieDetail">
 
-        <h2>映画詳細</h2>
+    <h2>映画詳細</h2>
 
-        <p>
-            映画を選択してください
-        </p>
+    <p>
+        映画を選択してください
+    </p>
 
-    </section>
 </section>
 
 <section id="yearlyStats">
@@ -223,7 +224,7 @@ Filmarksデータを読み込む
 <script src="js/productionYearFilter.js"></script>
 <script src="js/watchedYearFilter.js"></script>
 <script src="js/sort.js"></script>
-<script src="js/app.js?v=0.3.3"></script>
+<script src="js/app.js?v=0.5.0"></script>
 
 </body>
 </html>
