@@ -36,29 +36,6 @@ header p{
     padding:24px;
 }
 
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:16px;
-}
-
-.card{
-    background:#1e1e1e;
-    border-radius:16px;
-    padding:20px;
-}
-
-.card h2{
-    font-size:16px;
-    color:#aaaaaa;
-}
-
-.value{
-    font-size:34px;
-    margin-top:12px;
-    font-weight:bold;
-}
-
 .section{
     margin-top:30px;
 }
@@ -86,6 +63,42 @@ footer{
     text-align:center;
     color:#777;
     margin:40px 0;
+}
+
+/* 統計 */
+
+section {
+
+    margin-top: 30px;
+
+}
+
+section h2 {
+
+    margin-bottom: 15px;
+
+}
+
+section table {
+
+    width: 100%;
+
+}
+
+section th {
+
+    width: 40%;
+
+    color: #aaaaaa;
+
+    font-weight: normal;
+
+}
+
+section td {
+
+    font-weight: bold;
+
 }
 
 /* 映画リスト */

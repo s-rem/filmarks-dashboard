@@ -18,29 +18,59 @@
 
 <div class="container">
 
-<div class="cards">
+<section>
 
-<div class="card">
-    <h2>🎥 総鑑賞本数</h2>
-    <div class="value" id="totalMovies">--</div>
-</div>
+    <h2>📊 統計</h2>
 
-<div class="card">
-    <h2>⭐ 平均評価</h2>
-    <div class="value" id="averageRating">--</div>
-</div>
+    <table>
 
-<div class="card">
-    <h2>🏆 ベスト作品</h2>
-    <div class="value" id="bestMovie">--</div>
-</div>
+        <tbody>
 
-<div class="card">
-    <h2>📅 今年の鑑賞本数</h2>
-    <div class="value" id="yearMovies">--</div>
-</div>
+            <tr>
 
-</div>
+                <th>🎥 総鑑賞本数</th>
+
+                <td id="totalMovies">
+                    --
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th>⭐ 平均評価</th>
+
+                <td id="averageRating">
+                    --
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th>🏆 ベスト作品</th>
+
+                <td id="bestMovie">
+                    --
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th>📅 今年の鑑賞本数</th>
+
+                <td id="yearMovies">
+                    --
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</section>
 
 <div class="section">
 
@@ -140,6 +170,32 @@ Filmarksデータを読み込む
     </section>
 </section>
 
+<section id="yearlyStats">
+
+    <h2>📊 年別鑑賞本数</h2>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>鑑賞年</th>
+
+                <th>本数</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="yearlyStatsBody">
+
+        </tbody>
+
+    </table>
+
+</section>
+
 <footer>
 
 <p>
@@ -159,6 +215,7 @@ Filmarksデータを読み込む
 
 <script src="js/movieService.js"></script>
 <script src="js/dashboard.js"></script>
+<script src="js/yearlyStats.js"></script>
 <script src="js/movieTable.js"></script>
 <script src="js/movieDetail.js"></script>
 <script src="js/search.js"></script>

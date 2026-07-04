@@ -73,7 +73,8 @@ async function start() {
         movies = await loadMovies();
 
         updateDashboard(movies);
-
+        updateYearlyStats(movies);
+ 
         initializeSearch();
 
         initializeProductionYearFilter(
