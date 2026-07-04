@@ -138,13 +138,16 @@ tbody tr:hover{
 
 .searchFilters {
 
-    display: flex;
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
 
     gap: 12px;
 
 }
 
-#searchBox {
+#searchBox,
+#sortSelect {
 
     width: 100%;
 
@@ -155,10 +158,13 @@ tbody tr:hover{
 }
 
 #productionYearSelect,
-#watchedYearSelect,
-#sortSelect {
+#watchedYearSelect {
 
-    width: 110px;
+    width: 100%;
+
+    padding: 8px 12px;
+
+    font-size: 16px;
 
 }
 
@@ -262,19 +268,12 @@ tbody tr:hover{
 
     }
 
-    #searchBox {
-
-        font-size: 16px;
-
-    }
-
+    #searchBox,
+    #sortSelect,
     #productionYearSelect,
-    #watchedYearSelect,
-    #sortSelect {
+    #watchedYearSelect {
 
-        flex: 1;
-
-        width: auto;
+        width: 100%;
 
         font-size: 14px;
 
