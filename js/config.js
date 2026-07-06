@@ -20,6 +20,6 @@ const APP_CONFIG = {
 
     version: "v0.5.12",
 
-    latest: "Button size change
+    latest: "Button size change",
 
 };
