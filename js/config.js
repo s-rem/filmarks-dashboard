@@ -18,8 +18,8 @@ const APP_CONFIG = {
 
     name: "Filmarks Dashboard",
 
-    version: "v0.5.14",
+    version: "v0.5.15",
 
-    latest: "JavaScript cash fix",
+    latest: "button shulink",
 
 };

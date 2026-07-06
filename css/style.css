@@ -89,6 +89,22 @@ section td {
 
 }
 
+/* 読込ボタン */
+
+.loadButton {
+
+    width: auto;
+
+    padding: 6px 14px;
+
+    font-size: 13px;
+
+    border-radius: 6px;
+
+    display: inline-block;
+
+}
+
 /* 映画リスト */
 
 table{
