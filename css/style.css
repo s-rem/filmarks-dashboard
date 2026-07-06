@@ -179,10 +179,10 @@ tbody tr:hover{
 #watchedYearSelect {
 
     width: 100%;
-
-    padding: 0px 10px;
-
+    height: 28px;
+    padding: 0 8px;
     font-size: 12px;
+    line-height: 28px;
 
 }
 
@@ -277,12 +277,6 @@ tbody tr:hover{
     .searchArea {
 
         gap: 6px;
-
-    }
-
-    .searchFilters {
-
-        padding: 8px 12px;
 
     }
 
