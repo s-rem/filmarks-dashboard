@@ -1,42 +1,86 @@
-# jekyll-gh-pages.yml
+# .github/workflows/pages.yml
+#
+# Filmarks Dashboard
+# GitHub Pagesへ静的サイトをデプロイする
 
-name: Deploy static site to GitHub Pages
+name: Deploy GitHub Pages
+
+# --------------------
+# トリガー
+# --------------------
 
 on:
-  push:
-    branches: ["main"]
 
+  # mainへpushしたら実行
+  push:
+    branches:
+      - main
+
+  # 手動実行
   workflow_dispatch:
 
+# --------------------
+# 権限
+# --------------------
+
 permissions:
+
   contents: read
+
   pages: write
+
   id-token: write
 
+# --------------------
+# 同時実行
+# --------------------
+
 concurrency:
-  group: "pages"
+
+  group: pages
+
   cancel-in-progress: true
 
+# --------------------
+# デプロイ
+# --------------------
+
 jobs:
+
   deploy:
+
     runs-on: ubuntu-latest
 
     environment:
+
       name: github-pages
+
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
+
+      # ソース取得
       - name: Checkout
+
         uses: actions/checkout@v4
 
+      # GitHub Pages初期化
       - name: Setup Pages
+
         uses: actions/configure-pages@v5
 
-      - name: Upload artifact
+      # リポジトリ全体をそのまま公開
+      - name: Upload Pages Artifact
+
         uses: actions/upload-pages-artifact@v3
+
         with:
+
           path: .
 
-      - name: Deploy to GitHub Pages
+      # デプロイ
+      - name: Deploy
+
         id: deployment
+
         uses: actions/deploy-pages@v5
