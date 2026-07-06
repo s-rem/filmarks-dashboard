@@ -164,8 +164,7 @@ tbody tr:hover{
 
 }
 
-#searchBox,
-#sortSelect {
+#searchBox {
 
     width: 100%;
 
@@ -175,14 +174,15 @@ tbody tr:hover{
 
 }
 
+#sortSelect,
 #productionYearSelect,
 #watchedYearSelect {
 
     width: 100%;
 
-    padding: 8px 12px;
+    padding: 6px 10px;
 
-    font-size: 16px;
+    font-size: 12px;
 
 }
 
