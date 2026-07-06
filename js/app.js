@@ -93,6 +93,8 @@ async function start() {
 
     } catch (error) {
 
+        alert(error.message);
+ 
         console.error(error);
 
     }

@@ -18,8 +18,8 @@ const APP_CONFIG = {
 
     name: "Filmarks Dashboard",
 
-    version: "v0.5.12",
+    version: "v0.5.13",
 
-    latest: "Button size change",
+    latest: "debug",
 
 };
