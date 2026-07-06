@@ -160,7 +160,7 @@ tbody tr:hover{
 
     grid-template-columns: 1fr 1fr;
 
-    gap: 6px;
+    gap: 0px;
 
 }
 
