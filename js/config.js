@@ -18,8 +18,8 @@ const APP_CONFIG = {
 
     name: "Filmarks Dashboard",
 
-    version: "v0.5.11",
+    version: "v0.5.12",
 
-    latest: "Remove redundant section headings"
+    latest: "Button size change
 
 };
