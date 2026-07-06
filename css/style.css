@@ -16,7 +16,7 @@ body{
 
 header{
     background:#1f1f1f;
-    padding:24px;
+    padding:12px;
     text-align:center;
     border-bottom:1px solid #333;
 }
@@ -33,7 +33,7 @@ header p{
 .container{
     max-width:900px;
     margin:auto;
-    padding:24px;
+    padding:12px;
 }
 
 button {
@@ -192,7 +192,7 @@ tbody tr:hover{
 
     margin-top: 16px;
 
-    padding: 24px;
+    padding:12px;
 
     border: 1px solid #333;
 
