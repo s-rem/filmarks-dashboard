@@ -282,18 +282,25 @@ tbody tr:hover{
 
     .searchFilters {
 
-        padding:12: 4px;
+        padding: 8px 12px;
 
     }
 
-    #searchBox,
+    #searchBox {
+
+            width: 100%;
+
+            font-size: 14px;
+
+    }
+
     #sortSelect,
     #productionYearSelect,
     #watchedYearSelect {
 
         width: 100%;
 
-        font-size: 14px;
+        font-size: 12px;
 
     }
  
