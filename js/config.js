@@ -18,8 +18,8 @@ const APP_CONFIG = {
 
     name: "Filmarks Dashboard",
 
-    version: "v0.5.20",
+    version: "v0.5.21",
 
-    latest: "Refine movie rating column",
+    latest: "table header sticky",
 
 };
