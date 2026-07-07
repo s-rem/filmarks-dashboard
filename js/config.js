@@ -18,8 +18,8 @@ const APP_CONFIG = {
 
     name: "Filmarks Dashboard",
 
-    version: "v0.5.22",
+    version: "v0.6.0",
 
-    latest: "Adjust movie table height dynamically",
+    latest: "Change Looks and Responsive movie list",
 
 };
