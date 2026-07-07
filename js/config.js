@@ -18,8 +18,8 @@ const APP_CONFIG = {
 
     name: "Filmarks Dashboard",
 
-    version: "v0.5.15",
+    version: "v0.5.20",
 
-    latest: "button shulink",
+    latest: "Refine movie rating column",
 
 };

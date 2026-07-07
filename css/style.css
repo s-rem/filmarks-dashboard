@@ -143,6 +143,20 @@ tbody tr:hover{
 
 }
 
+.ratingCell {
+
+    white-space: nowrap;
+
+}
+
+.ratingColumn {
+
+    width: 1%;
+
+    white-space: nowrap;
+
+}
+
 /* 検索エリア */
 .searchArea {
 

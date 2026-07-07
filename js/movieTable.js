@@ -18,7 +18,9 @@ function showMovieList(movies) {
 
     const rows = movies.map(movie => `
         <tr>
-            <td>${movie.rating}</td>
+            <td class="ratingCell">
+                ${Number(movie.rating).toFixed(1)}
+            </td>
 
             <td>
                 <a
