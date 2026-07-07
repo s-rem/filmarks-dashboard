@@ -61,3 +61,30 @@ function showMovieList(movies) {
         });
 
 }
+
+/**
+ * 映画一覧テーブルサイズ更新
+ *
+ */
+function adjustMovieTableHeight() {
+
+    const container =
+        document.getElementById(
+            "movieTableContainer"
+        );
+
+    const top =
+        container.getBoundingClientRect().top;
+
+    const windowHeight =
+        window.innerHeight;
+
+    const footerSpace = 40;
+
+    const maxHeight =
+        windowHeight - top - footerSpace;
+
+    container.style.maxHeight =
+        `${maxHeight}px`;
+
+}

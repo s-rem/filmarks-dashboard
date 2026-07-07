@@ -91,6 +91,8 @@ async function start() {
 
         refreshMovieList();
 
+        adjustMovieTableHeight();
+
     } catch (error) {
 
         alert(error.message);
@@ -102,3 +104,11 @@ async function start() {
 }
 
 start();
+
+/**
+ * リサイズ時イベントリスナー登録
+ */
+window.addEventListener(
+    "resize",
+    adjustMovieTableHeight
+);
