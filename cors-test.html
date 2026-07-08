@@ -1,31 +1,120 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<title>Filmarks CORS Test</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CORS Test</title>
+
+<style>
+
+body {
+
+    font-family: sans-serif;
+
+    padding: 20px;
+
+}
+
+button {
+
+    padding: 10px 16px;
+
+    cursor: pointer;
+
+}
+
+pre {
+
+    margin-top: 20px;
+
+    padding: 12px;
+
+    border: 1px solid #ccc;
+
+    white-space: pre-wrap;
+
+    word-break: break-word;
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-<button id="test">テスト実行</button>
-<pre id="result"></pre>
+<h1>Filmarks Fetch Test</h1>
+
+<button id="testButton">
+    Fetch Test
+</button>
+
+<pre id="result">
+Ready
+</pre>
 
 <script>
-document.getElementById("test").onclick = async () => {
-  const result = document.getElementById("result");
 
-  try {
-    const res = await fetch(
-      "https://filmarks.com/users/rem_srem_jp/marks"
+const TEST_URL =
+    "https://filmarks.com/movies/116731/reviews/219754768";
+
+async function testFetch() {
+
+    const resultElement =
+        document.getElementById(
+            "result"
+        );
+
+    resultElement.textContent =
+        "Fetching...";
+
+    try {
+
+        const response =
+            await fetch(
+                TEST_URL
+            );
+
+        const text =
+            await response.text();
+
+        resultElement.textContent =
+            [
+                "SUCCESS",
+                `status: ${response.status}`,
+                `ok: ${response.ok}`,
+                `type: ${response.type}`,
+                "",
+                text.substring(
+                    0,
+                    500
+                )
+            ].join("\n");
+
+    } catch (error) {
+
+        resultElement.textContent =
+            [
+                "ERROR",
+                `name: ${error.name}`,
+                `message: ${error.message}`
+            ].join("\n");
+
+        console.error(error);
+
+    }
+
+}
+
+document
+    .getElementById(
+        "testButton"
+    )
+    .addEventListener(
+        "click",
+        testFetch
     );
 
-    result.textContent =
-      `成功\nstatus=${res.status}`;
-
-  } catch (err) {
-    result.textContent =
-      `失敗\n${err}`;
-  }
-};
 </script>
 
 </body>
