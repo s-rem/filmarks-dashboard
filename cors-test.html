@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>Filmarks CORS Test</title>
+</head>
+<body>
+
+<button id="test">テスト実行</button>
+<pre id="result"></pre>
+
+<script>
+document.getElementById("test").onclick = async () => {
+  const result = document.getElementById("result");
+
+  try {
+    const res = await fetch(
+      "https://filmarks.com/users/rem_srem_jp/marks"
+    );
+
+    result.textContent =
+      `成功\nstatus=${res.status}`;
+
+  } catch (err) {
+    result.textContent =
+      `失敗\n${err}`;
+  }
+};
+</script>
+
+</body>
+</html>
