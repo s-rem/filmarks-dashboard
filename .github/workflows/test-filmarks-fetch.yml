@@ -1,0 +1,14 @@
+name: Test Filmarks Fetch
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Fetch Filmarks
+        run: |
+          curl -I \
+          https://filmarks.com/movies/116731/reviews/219754768
