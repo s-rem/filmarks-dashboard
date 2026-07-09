@@ -15,6 +15,16 @@ jobs:
           https://filmarks.com/movies/116731/reviews/219754768 \
           -o review.html
 
-      - name: Show first lines
+      - name: grep some tag
         run: |
-          head -100 review.html
+          grep -n "c-rating__score" review.html || true
+          grep -n "c-media-time" review.html || true
+          grep -n "review" review.html || true
+          
+      - name: grep movie data
+        run: |
+          grep -n "c-rating__score" review.html || true
+          grep -n "c-media-time" review.html || true
+          grep -n "og:title" review.html || true
+          grep -n "description" review.html || true
+          grep -n "2026-06-28" review.html || true 
