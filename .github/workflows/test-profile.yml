@@ -1,40 +1,40 @@
 name: Test Filmarks Profile
 
 on:
-workflow_dispatch
+  workflow_dispatch
 
 jobs:
-test:
-runs-on: ubuntu-latest
+  test:
+    runs-on: ubuntu-latest
 
-steps:
-  - uses: actions/checkout@v4
-  - uses: actions/setup-node@v4
-    with:
-      node-version: 22
-  - name: Install Cheerio
-    run: npm install cheerio
-  - name: Fetch profile
-    run: |
-      curl \
-      https://filmarks.com/users/rem_srem_jp \
-      -o profile.html
-  - name: Parse profile
-    run: |
-      node <<'EOF'
-      const fs = require("fs");
-      const cheerio = require("cheerio");
-      const html =
-        fs.readFileSync("profile.html", "utf8");
-      const $ = cheerio.load(html);
-      $("a").each((i, el) => {
-        const href = $(el).attr("href");
-        if (
-          href &&
-          href.includes("/movies/") &&
-          href.includes("#mark-")
-        ) {
-          console.log(href);
-        }
-      });
-      EOF
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Cheerio
+        run: npm install cheerio
+      - name: Fetch profile
+        run: |
+          curl \
+          https://filmarks.com/users/rem_srem_jp \
+          -o profile.html
+      - name: Parse profile
+        run: |
+          node <<'EOF'
+          const fs = require("fs");
+          const cheerio = require("cheerio");
+          const html =
+            fs.readFileSync("profile.html", "utf8");
+          const $ = cheerio.load(html);
+          $("a").each((i, el) => {
+            const href = $(el).attr("href");
+            if (
+              href &&
+              href.includes("/movies/") &&
+              href.includes("#mark-")
+            ) {
+              console.log(href);
+            }
+          });
+          EOF
