@@ -8,7 +8,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Fetch Filmarks
+
+      - name: Fetch HTML
         run: |
-          curl -I \
-          https://filmarks.com/movies/116731/reviews/219754768
+          curl \
+          https://filmarks.com/movies/116731/reviews/219754768 \
+          -o review.html
+
+      - name: Show first lines
+        run: |
+          head -100 review.html
