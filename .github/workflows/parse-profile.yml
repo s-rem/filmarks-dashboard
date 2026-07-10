@@ -1,4 +1,4 @@
-name: Test Filmarks Profile
+name: Parse Filmarks Profile
 
 on:
   workflow_dispatch:
