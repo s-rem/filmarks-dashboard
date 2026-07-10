@@ -20,13 +20,29 @@ jobs:
       - name: Fetch profile
         run: |
           curl \
-            https://filmarks.com/users/rem_srem_jp \
+            https://filmarks.com/users/rem_srem_jp?page=34 \
             -o profile.html
 
       - name: Parse profile
         run: |
           node scripts/parse-profile.js
 
-      - name: Show reviews.json
+      - name: Check next page with Cheerio
         run: |
-          head -50 reviews.json
+          node <<'EOF'
+          const fs = require("fs");
+          const cheerio = require("cheerio");
+
+          const html =
+            fs.readFileSync(
+              "profile.html",
+              "utf8"
+            );
+
+          const $ = cheerio.load(html);
+
+          console.log(
+            "nextHref:",
+            $('a[rel="next"]').attr("href")
+          );
+          EOF
