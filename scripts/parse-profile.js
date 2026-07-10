@@ -1,8 +1,22 @@
 /**
  * parse-profile.js
  *
- * Filmarksプロフィールページ(profile.html)を解析し、
- * movieId / reviewId の一覧を reviews.json に出力する
+ * FilmarksプロフィールHTML(profile.html)を解析し、
+ * review一覧と nextHref を返す。
+ *
+ * 入力:
+ *   profile.html
+ *
+ * 出力:
+ *   {
+ *     reviews: [
+ *       {
+ *         movieId: "116731",
+ *         reviewId: "219754768"
+ *       }
+ *     ],
+ *     nextHref: "/users/rem_srem_jp?page=2"
+ *   }
  */
 
 const fs = require("fs");
@@ -16,8 +30,8 @@ const html =
 
 const $ = cheerio.load(html);
 
-const found = new Set();
 const reviews = [];
+const found = new Set();
 
 $("a").each((i, el) => {
 
@@ -34,7 +48,7 @@ $("a").each((i, el) => {
 
   const match =
     href.match(
-      /\/movies\/(\d+)#mark-(\d+)/
+      /\/movies\/(\d+).*#mark-(\d+)/
     );
 
   if (!match) {
@@ -50,9 +64,7 @@ $("a").each((i, el) => {
   const key =
     `${movieId}:${reviewId}`;
 
-  if (
-    found.has(key)
-  ) {
+  if (found.has(key)) {
     return;
   }
 
@@ -65,15 +77,18 @@ $("a").each((i, el) => {
 
 });
 
-fs.writeFileSync(
-  "reviews.json",
+const nextHref =
+  $('a[rel="next"]').attr("href");
+
+const result = {
+  reviews,
+  nextHref
+};
+
+console.log(
   JSON.stringify(
-    reviews,
+    result,
     null,
     2
   )
-);
-
-console.log(
-  `saved ${reviews.length} reviews`
 );
