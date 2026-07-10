@@ -19,9 +19,12 @@ jobs:
 
       - name: Fetch profile
         run: |
-          USER_NAME=rem_srem_jp \
-          PAGE=2 \
           node scripts/fetch-profile.js
 
       - name: Parse profile
-        run: node scripts/parse-profile.js
+        run: |
+          node scripts/parse-profile.js > reviews.json
+
+      - name: Show reviews.json
+        run: |
+          cat reviews.json
