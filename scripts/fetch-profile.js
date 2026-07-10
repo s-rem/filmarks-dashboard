@@ -1,93 +1,46 @@
 /**
- * parse-profile.js
+ * fetch-profile.js
  *
- * FilmarksプロフィールHTML(profile.html)を解析し、
- * movieId / reviewId 一覧と nextHref を返す。
+ * Filmarksプロフィールページを1ページ取得し、
+ * profile.html として保存する。
  *
- * 入力:
- *   profile.html
+ * デバッグ用途:
  *
- * 出力:
- *   {
- *     reviews: [
- *       {
- *         movieId: "...",
- *         reviewId: "..."
- *       }
- *     ],
- *     nextHref: "/users/xxx?page=2"
- *   }
+ *   node scripts/fetch-profile.js
+ *
+ *   PAGE=2 node scripts/fetch-profile.js
+ *
+ *   USER_NAME=xxxxx PAGE=3 \
+ *   node scripts/fetch-profile.js
  */
 
-const fs = require("fs");
-const cheerio = require("cheerio");
+const { execSync } =
+  require("child_process");
 
-const html =
-  fs.readFileSync(
-    "profile.html",
-    "utf8"
-  );
+const USER_NAME =
+  process.env.USER_NAME ||
+  "rem_srem_jp";
 
-const $ = cheerio.load(html);
+const PAGE =
+  process.env.PAGE ||
+  "1";
 
-const reviews = [];
-const found = new Set();
+const OUTPUT =
+  process.env.OUTPUT ||
+  "profile.html";
 
-$("a").each((i, el) => {
-
-  const href =
-    $(el).attr("href");
-
-  if (
-    !href ||
-    !href.includes("/movies/") ||
-    !href.includes("#mark-")
-  ) {
-    return;
-  }
-
-  const match =
-    href.match(
-      /\/movies\/(\d+).*#mark-(\d+)/
-    );
-
-  if (!match) {
-    return;
-  }
-
-  const movieId =
-    match[1];
-
-  const reviewId =
-    match[2];
-
-  const key =
-    `${movieId}:${reviewId}`;
-
-  if (found.has(key)) {
-    return;
-  }
-
-  found.add(key);
-
-  reviews.push({
-    movieId,
-    reviewId
-  });
-
-});
-
-const nextHref =
-  $('a[rel="next"]')
-    .attr("href");
+const url =
+  `https://filmarks.com/users/${USER_NAME}?page=${PAGE}`;
 
 console.log(
-  JSON.stringify(
-    {
-      reviews,
-      nextHref
-    },
-    null,
-    2
-  )
+  `fetching: ${url}`
+);
+
+execSync(
+  `curl -L "${url}" -o "${OUTPUT}"`,
+  { stdio: "inherit" }
+);
+
+console.log(
+  `saved: ${OUTPUT}`
 );
