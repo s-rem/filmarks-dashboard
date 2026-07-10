@@ -17,14 +17,10 @@ jobs:
       - name: Install dependencies
         run: npm install cheerio
 
-      - name: Fetch profile
+      - name: Fetch all profiles
         run: |
-          node scripts/fetch-profile.js
-
-      - name: Parse profile
-        run: |
-          node scripts/parse-profile.js > reviews.json
+          node scripts/fetch-all-profiles.js
 
       - name: Show reviews.json
         run: |
-          cat reviews.json
+          cat reviews.json      
