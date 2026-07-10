@@ -19,30 +19,9 @@ jobs:
 
       - name: Fetch profile
         run: |
-          curl \
-            https://filmarks.com/users/rem_srem_jp?page=33 \
-            -o profile.html
+          USER_NAME=rem_srem_jp \
+          PAGE=2 \
+          node scripts/fetch-profile.js
 
       - name: Parse profile
-        run: |
-          node scripts/parse-profile.js
-
-      - name: Check next page with Cheerio
-        run: |
-          node <<'EOF'
-          const fs = require("fs");
-          const cheerio = require("cheerio");
-
-          const html =
-            fs.readFileSync(
-              "profile.html",
-              "utf8"
-            );
-
-          const $ = cheerio.load(html);
-
-          console.log(
-            "nextHref:",
-            $('a[rel="next"]').attr("href")
-          );
-          EOF
+        run: node scripts/parse-profile.js
