@@ -20,7 +20,7 @@ jobs:
       - name: Fetch profile
         run: |
           curl \
-            https://filmarks.com/users/rem_srem_jp?page=34 \
+            https://filmarks.com/users/rem_srem_jp?page=33 \
             -o profile.html
 
       - name: Parse profile
