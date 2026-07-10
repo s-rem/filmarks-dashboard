@@ -1,0 +1,28 @@
+name: Test Review Fetch
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Cheerio
+        run: npm install cheerio
+
+      - name: Fetch review
+        run: |
+          curl \
+            https://filmarks.com/movies/116731/reviews/219754768 \
+            -o review.html
+
+      - name: Parse review
+        run: |
+          node scripts/fetch-review.js
