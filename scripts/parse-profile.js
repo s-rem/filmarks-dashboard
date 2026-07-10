@@ -1,7 +1,8 @@
 /**
  * parse-profile.js
  *
-
+ * Filmarksプロフィールページ(profile.html)を解析し、
+ * movieId / reviewId の一覧を reviews.json に出力する
  */
 
 const fs = require("fs");
@@ -16,6 +17,7 @@ const html =
 const $ = cheerio.load(html);
 
 const found = new Set();
+const reviews = [];
 
 $("a").each((i, el) => {
 
@@ -49,18 +51,29 @@ $("a").each((i, el) => {
     `${movieId}:${reviewId}`;
 
   if (
-    !found.has(key)
+    found.has(key)
   ) {
-
-    found.add(key);
-
-    console.log(
-      JSON.stringify({
-        movieId,
-        reviewId
-      })
-    );
-
+    return;
   }
 
+  found.add(key);
+
+  reviews.push({
+    movieId,
+    reviewId
+  });
+
 });
+
+fs.writeFileSync(
+  "reviews.json",
+  JSON.stringify(
+    reviews,
+    null,
+    2
+  )
+);
+
+console.log(
+  `saved ${reviews.length} reviews`
+);

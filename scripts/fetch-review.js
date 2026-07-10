@@ -1,5 +1,8 @@
 /**
- *  fetch-review.js
+ * fetch-review.js
+ *
+ * FilmarksレビューHTML(review.html)を解析し、
+ * タイトル・評価・鑑賞日時・レビュー本文を抽出する
  */
 
 const fs = require("fs");
