@@ -1,4 +1,4 @@
-name: Build Movies JSON
+name: Build Movies JSON (dev)
 
 on:
   workflow_dispatch:
