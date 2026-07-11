@@ -98,6 +98,74 @@ for (
         .text()
         .trim();
 
+    const genres = [];
+
+    $(
+      '.c-content-other-info__list a[href*="/list/genre/"]'
+    ).each((i, el) => {
+
+      genres.push(
+        $(el)
+          .text()
+          .trim()
+      );
+
+    });
+
+    const director = [];
+
+    $("h3").each((i, el) => {
+
+      const text =
+        $(el)
+          .text()
+          .trim();
+
+      if (text === "監督") {
+
+        const block =
+          $(el).next();
+
+        block
+          .find("a span")
+          .each((j, span) => {
+
+            director.push(
+              $(span)
+                .text()
+                .trim()
+            );
+
+          });
+
+      }
+
+    });
+
+    let japanReleaseDate =
+      "";
+
+    $("h3").each((i, el) => {
+
+      const text =
+        $(el)
+          .text()
+          .trim();
+
+      const match =
+        text.match(
+          /上映日：(\d{4})年(\d{2})月(\d{2})日/
+        );
+
+      if (match) {
+
+        japanReleaseDate =
+          `${match[1]}-${match[2]}-${match[3]}`;
+
+      }
+
+    });
+
     results.push({
 
       movieId,
@@ -111,7 +179,14 @@ for (
       watchedAt,
 
       review:
-        reviewText
+        reviewText,
+
+      genres,
+
+      director,
+
+      japan_release_date:
+        japanReleaseDate
 
     });
 

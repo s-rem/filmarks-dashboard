@@ -25,6 +25,17 @@ jobs:
         run: |
           node scripts/fetch-review.js
 
-      - name: Show count
+      - name: Show first 5 reviews
         run: |
-          wc -l review-details.json
+          node <<'EOF'
+      const data =
+        require("./review-details.json");
+
+      console.log(
+        JSON.stringify(
+          data.slice(0, 5),
+          null,
+          2
+        )
+      );
+      EOF
