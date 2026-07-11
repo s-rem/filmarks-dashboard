@@ -1,0 +1,63 @@
+name: Build Movies JSON
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install cheerio
+
+      - name: Fetch all profile pages
+        run: |
+          node scripts/fetch-all-profiles.js
+
+      - name: Fetch review details
+        run: |
+          node scripts/fetch-review.js
+
+      - name: Build movies.json
+        run: |
+          node scripts/build-movies-json.js
+
+      - name: Show first 5 movies
+        run: |
+          node <<'EOF'
+          const data =
+            require("./data/movies.json");
+
+          console.log(
+            JSON.stringify(
+              data.slice(0, 5),
+              null,
+              2
+            )
+          );
+          EOF
+
+      - name: Commit generated files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add \
+            reviews.json \
+            review-details.json \
+            data/movies.json
+
+          git diff --cached --quiet || \
+          git commit -m "Update movies data"
+
+      - name: Push
+        run: |
+          git push
