@@ -19,11 +19,11 @@ jobs:
 
       - name: Fetch all profile pages
         run: |
+          GET_PAGE=1\
           node scripts/fetch-all-profiles.js
 
       - name: Fetch review details
         run: |
-          GET_PAGE=1\
           node scripts/fetch-review.js
 
       - name: Build movies.json
