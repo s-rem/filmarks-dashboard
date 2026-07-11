@@ -1,9 +1,9 @@
 /**
  * fetch-review.js
  *
- * デバッグ版
- * 最初の1件だけ取得し、
- * 作品詳細部分の存在を確認する。
+ * reviews.json を読み込み、
+ * 全レビューを取得して
+ * review-details.json を生成する。
  */
 
 const fs = require("fs");
@@ -18,105 +18,122 @@ const reviews =
     )
   );
 
-const target =
-  reviews[0];
+const results = [];
 
-const movieId =
-  target.movieId;
+for (
+  let i = 0;
+  i < reviews.length;
+  i++
+) {
 
-const reviewId =
-  target.reviewId;
+  const target =
+    reviews[i];
 
-const url =
-  `https://filmarks.com/movies/${movieId}/reviews/${reviewId}`;
+  const movieId =
+    target.movieId;
 
-console.log(
-  `URL: ${url}`
-);
+  const reviewId =
+    target.reviewId;
 
-execSync(
-  `curl -L "${url}" -o review.html`,
-  {
-    stdio: "ignore"
+  const url =
+    `https://filmarks.com/movies/${movieId}/reviews/${reviewId}`;
+
+  console.log(
+    `[${i + 1}/${reviews.length}] ${url}`
+  );
+
+  try {
+
+    execSync(
+      `curl -L "${url}" -o review.html`,
+      {
+        stdio: "ignore"
+      }
+    );
+
+    const html =
+      fs.readFileSync(
+        "review.html",
+        "utf8"
+      );
+
+    const $ =
+      cheerio.load(html);
+
+    const title =
+      $(".p-timeline-mark__title a")
+        .first()
+        .text()
+        .trim();
+
+    const year =
+      $(".p-timeline-mark__title span")
+        .first()
+        .text()
+        .replace(/[()]/g, "")
+        .replace(
+          "年製作の映画",
+          ""
+        )
+        .trim();
+
+    const rating =
+      $(".c-rating__score")
+        .first()
+        .text()
+        .trim();
+
+    const watchedAt =
+      $(".c-media__date")
+        .first()
+        .attr("datetime");
+
+    const reviewText =
+      $(".p-mark-review")
+        .first()
+        .clone()
+        .children("ul")
+        .remove()
+        .end()
+        .text()
+        .trim();
+
+    results.push({
+
+      movieId,
+      reviewId,
+
+      title,
+      year,
+
+      rating,
+
+      watchedAt,
+
+      review:
+        reviewText
+
+    });
+
+  } catch (error) {
+
+    console.error(
+      `FAILED ${movieId} ${reviewId}`
+    );
+
   }
-);
-
-const html =
-  fs.readFileSync(
-    "review.html",
-    "utf8"
-  );
-
-const $ =
-  cheerio.load(html);
-
-console.log(
-  "DETAIL COUNT:",
-  $(".p-content-detail").length
-);
-
-console.log(
-  "OTHER INFO COUNT:",
-  $(".c-content-other-info__title").length
-);
-
-console.log(
-  "PEOPLE TERM COUNT:",
-  $(".p-content-detail__people-list-term").length
-);
-
-console.log(
-  "\n=== OTHER INFO ==="
-);
-
-$(".c-content-other-info__title")
-  .each((i, el) => {
-
-    console.log(
-      $(el)
-        .text()
-        .trim()
-    );
-
-  });
-
-console.log(
-  "\n=== PEOPLE ==="
-);
-
-$(".p-content-detail__people-list-term")
-  .each((i, el) => {
-
-    console.log(
-      $(el)
-        .text()
-        .trim()
-    );
-
-  });
-
-console.log(
-  "\n=== DETAIL HTML HEAD ==="
-);
-
-const detailHtml =
-  $(".p-content-detail")
-    .first()
-    .html();
-
-if (detailHtml) {
-
-  console.log(
-    detailHtml.substring(
-      0,
-      3000
-    )
-  );
-
-} else {
-
-  console.log(
-    "NO DETAIL HTML"
-  );
 
 }
+
+fs.writeFileSync(
+  "review-details.json",
+  JSON.stringify(
+    results,
+    null,
+    2
+  )
+);
+
+console.log(
+  `saved ${results.length} reviews`
+);
