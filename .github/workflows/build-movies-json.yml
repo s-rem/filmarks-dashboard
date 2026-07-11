@@ -23,7 +23,7 @@ jobs:
 
       - name: Fetch review details
         run: |
-          ONE_PAGE=1\
+          GET_PAGE=1\
           node scripts/fetch-review.js
 
       - name: Build movies.json
