@@ -1,11 +1,9 @@
 /**
  * fetch-review.js
  *
- * reviews.json の先頭1件を使って
- * Filmarksレビューを取得・解析する。
- *
- * 出力:
- *   review-detail.json
+ * reviews.json を読み込み、
+ * 全レビューを取得して
+ * review-details.json を生成する。
  */
 
 const fs = require("fs");
@@ -20,113 +18,122 @@ const reviews =
     )
   );
 
-if (reviews.length === 0) {
+const results = [];
 
-  console.error(
-    "reviews.json is empty"
+for (
+  let i = 0;
+  i < reviews.length;
+  i++
+) {
+
+  const target =
+    reviews[i];
+
+  const movieId =
+    target.movieId;
+
+  const reviewId =
+    target.reviewId;
+
+  const url =
+    `https://filmarks.com/movies/${movieId}/reviews/${reviewId}`;
+
+  console.log(
+    `[${i + 1}/${reviews.length}] ${url}`
   );
 
-  process.exit(1);
+  try {
+
+    execSync(
+      `curl -L "${url}" -o review.html`,
+      {
+        stdio: "ignore"
+      }
+    );
+
+    const html =
+      fs.readFileSync(
+        "review.html",
+        "utf8"
+      );
+
+    const $ =
+      cheerio.load(html);
+
+    const title =
+      $(".p-timeline-mark__title a")
+        .first()
+        .text()
+        .trim();
+
+    const year =
+      $(".p-timeline-mark__title span")
+        .first()
+        .text()
+        .replace(/[()]/g, "")
+        .replace(
+          "年製作の映画",
+          ""
+        )
+        .trim();
+
+    const rating =
+      $(".c-rating__score")
+        .first()
+        .text()
+        .trim();
+
+    const watchedAt =
+      $(".c-media__date")
+        .first()
+        .attr("datetime");
+
+    const reviewText =
+      $(".p-mark-review")
+        .first()
+        .clone()
+        .children("ul")
+        .remove()
+        .end()
+        .text()
+        .trim();
+
+    results.push({
+
+      movieId,
+      reviewId,
+
+      title,
+      year,
+
+      rating,
+
+      watchedAt,
+
+      review:
+        reviewText
+
+    });
+
+  } catch (error) {
+
+    console.error(
+      `FAILED ${movieId} ${reviewId}`
+    );
+
+  }
 
 }
 
-const target =
-  reviews[0];
-
-const movieId =
-  target.movieId;
-
-const reviewId =
-  target.reviewId;
-
-const url =
-  `https://filmarks.com/movies/${movieId}/reviews/${reviewId}`;
-
-console.log(
-  `fetching ${url}`
-);
-
-execSync(
-  `curl -L "${url}" -o review.html`,
-  { stdio: "inherit" }
-);
-
-const html =
-  fs.readFileSync(
-    "review.html",
-    "utf8"
-  );
-
-const $ =
-  cheerio.load(html);
-
-const title =
-  $(".p-timeline-mark__title a")
-    .first()
-    .text()
-    .trim();
-
-const year =
-  $(".p-timeline-mark__title span")
-    .first()
-    .text()
-    .replace(/[()]/g, "")
-    .replace(
-      "年製作の映画",
-      ""
-    )
-    .trim();
-
-const rating =
-  $(".c-rating__score")
-    .first()
-    .text()
-    .trim();
-
-const watchedAt =
-  $(".c-media__date")
-    .first()
-    .attr("datetime");
-
-const reviewText =
-  $(".p-mark-review")
-    .first()
-    .clone()
-    .children("ul")
-    .remove()
-    .end()
-    .text()
-    .trim();
-
-const result = {
-
-  movieId,
-  reviewId,
-
-  title,
-  year,
-
-  rating,
-
-  watchedAt,
-
-  review: reviewText
-
-};
-
 fs.writeFileSync(
-  "review-detail.json",
+  "review-details.json",
   JSON.stringify(
-    result,
+    results,
     null,
     2
   )
 );
 
 console.log(
-  JSON.stringify(
-    result,
-    null,
-    2
-  )
+  `saved ${results.length} reviews`
 );

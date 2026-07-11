@@ -21,10 +21,10 @@ jobs:
         run: |
           node scripts/fetch-all-profiles.js
 
-      - name: Fetch first review
+      - name: Fetch all reviews
         run: |
           node scripts/fetch-review.js
 
-      - name: Show review detail
+      - name: Show count
         run: |
-          cat review-detail.json
+          wc -l review-details.json
