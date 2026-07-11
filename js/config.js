@@ -18,8 +18,8 @@ const APP_CONFIG = {
 
     name: "Filmarks Dashboard",
 
-    version: "v0.6.0",
+    version: "v0.6.1",
 
-    latest: "Change Looks and Responsive movie list",
+    latest: "movies.json update dev",
 
 };
