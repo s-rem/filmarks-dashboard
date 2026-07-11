@@ -1,0 +1,93 @@
+name: Test Movie Page
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install cheerio
+
+      - name: Fetch movie page
+        run: |
+          curl \
+            https://filmarks.com/movies/127668 \
+            -o movie.html
+
+      - name: Grep movie page
+        run: |
+          grep -n "上映日" movie.html || true
+          grep -n "ジャンル" movie.html || true
+          grep -n "監督" movie.html || true
+          grep -n "p-content-detail" movie.html || true
+
+      - name: Check with Cheerio
+        run: |
+          node <<'EOF'
+          const fs = require("fs");
+          const cheerio = require("cheerio");
+
+          const html =
+            fs.readFileSync(
+              "movie.html",
+              "utf8"
+            );
+
+          const $ =
+            cheerio.load(html);
+
+          console.log(
+            "DETAIL:",
+            $(".p-content-detail").length
+          );
+
+          console.log(
+            "INFO:",
+            $(".c-content-other-info__title").length
+          );
+
+          console.log(
+            "PEOPLE:",
+            $(".p-content-detail__people-list-term").length
+          );
+
+          console.log(
+            "\n=== INFO TITLES ==="
+          );
+
+          $(".c-content-other-info__title")
+            .each((i, el) => {
+
+              console.log(
+                $(el)
+                  .text()
+                  .trim()
+              );
+
+            });
+
+          console.log(
+            "\n=== PEOPLE TITLES ==="
+          );
+
+          $(".p-content-detail__people-list-term")
+            .each((i, el) => {
+
+              console.log(
+                $(el)
+                  .text()
+                  .trim()
+              );
+
+            });
+
+          EOF
