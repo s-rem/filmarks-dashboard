@@ -28,14 +28,14 @@ jobs:
       - name: Show first 5 reviews
         run: |
           node <<'EOF'
-      const data =
-        require("./review-details.json");
+          const data =
+            require("./review-details.json");
 
-      console.log(
-        JSON.stringify(
-          data.slice(0, 5),
-          null,
-          2
-        )
-      );
-      EOF
+          console.log(
+            JSON.stringify(
+              data.slice(0, 5),
+              null,
+              2
+            )
+          );
+          EOF
