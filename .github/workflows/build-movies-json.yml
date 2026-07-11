@@ -2,11 +2,9 @@ name: Build Movies JSON (dev)
 
 on:
   workflow_dispatch:
-    inputs:
-      get_page:
-        description: "取得するプロフィールページ数"
-        required: true
-        default: "0"
+
+env:
+  GET_PAGE: 1
  
 permissions:
   contents: write
@@ -28,8 +26,6 @@ jobs:
         run: npm install cheerio
 
       - name: Fetch all profile pages
-        env:
-          GET_PAGE: ${{ github.event.inputs.get_page }}
         run: |
           node scripts/fetch-all-profiles.js
 
