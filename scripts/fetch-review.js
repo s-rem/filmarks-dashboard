@@ -2,8 +2,9 @@
  * fetch-review.js
  *
  * reviews.json を読み込み、
- * 全レビューを取得して
- * review-details.json を生成する。
+ * 最初の2件だけ取得して
+ * genres / director /
+ * japan_release_date を確認する。
  */
 
 const fs = require("fs");
@@ -22,7 +23,7 @@ const results = [];
 
 for (
   let i = 0;
-  i < reviews.length;
+  i < Math.min(2, reviews.length);
   i++
 ) {
 
@@ -39,7 +40,7 @@ for (
     `https://filmarks.com/movies/${movieId}/reviews/${reviewId}`;
 
   console.log(
-    `[${i + 1}/${reviews.length}] ${url}`
+    `[${i + 1}] ${url}`
   );
 
   try {
@@ -101,37 +102,25 @@ for (
     const genres = [];
 
     $(
-      '.c-content-other-info__list a[href*="/list/genre/"]'
+      "h3.c-content-other-info__title"
     ).each((i, el) => {
-
-      genres.push(
-        $(el)
-          .text()
-          .trim()
-      );
-
-    });
-
-    const director = [];
-
-    $("h3").each((i, el) => {
 
       const text =
         $(el)
           .text()
           .trim();
 
-      if (text === "監督") {
+      if (
+        text === "ジャンル："
+      ) {
 
-        const block =
-          $(el).next();
+        $(el)
+          .next("ul")
+          .find("a")
+          .each((j, a) => {
 
-        block
-          .find("a span")
-          .each((j, span) => {
-
-            director.push(
-              $(span)
+            genres.push(
+              $(a)
                 .text()
                 .trim()
             );
@@ -142,10 +131,60 @@ for (
 
     });
 
+    const director = [];
+
+    $(
+      "h3.p-content-detail__people-list-term"
+    ).each((i, el) => {
+
+      const text =
+        $(el)
+          .text()
+          .trim();
+
+      if (
+        text === "監督"
+      ) {
+
+        let node =
+          $(el).next();
+
+        while (
+          node.length &&
+          !node.is("h3")
+        ) {
+
+          node
+            .find(
+              "a span:first-child"
+            )
+            .each(
+              (j, span) => {
+
+                director.push(
+                  $(span)
+                    .text()
+                    .trim()
+                );
+
+              }
+            );
+
+          node =
+            node.next();
+
+        }
+
+      }
+
+    });
+
     let japanReleaseDate =
       "";
 
-    $("h3").each((i, el) => {
+    $(
+      "h3.c-content-other-info__title"
+    ).each((i, el) => {
 
       const text =
         $(el)
@@ -165,6 +204,19 @@ for (
       }
 
     });
+
+    console.log(
+      JSON.stringify(
+        {
+          title,
+          genres,
+          director,
+          japanReleaseDate
+        },
+        null,
+        2
+      )
+    );
 
     results.push({
 
@@ -195,6 +247,8 @@ for (
     console.error(
       `FAILED ${movieId} ${reviewId}`
     );
+
+    console.error(error);
 
   }
 
