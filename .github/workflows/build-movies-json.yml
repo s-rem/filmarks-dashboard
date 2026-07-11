@@ -18,8 +18,9 @@ jobs:
         run: npm install cheerio
 
       - name: Fetch all profile pages
+          env:
+          GET_PAGE: 1
         run: |
-          GET_PAGE=1\
           node scripts/fetch-all-profiles.js
 
       - name: Fetch review details

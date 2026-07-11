@@ -13,8 +13,8 @@ const USER_NAME =
   "rem_srem_jp";
 
 const GET_PAGE =
-  process.env.GET_PAGE || 0;
- 
+  Number(process.env.GET_PAGE || 0);
+
 const reviews = [];
 const found = new Set();
 
@@ -78,14 +78,15 @@ while (true) {
 
   }
 
-  page++;
-
   /* test用 取得ページ制御 */
-  if (GET_PAGE) {
-    if (GET_PAGE<page) {
-      break;
-    }
+  if (
+    GET_PAGE &&
+    page >= GET_PAGE
+  ) {
+    break;
   }
+
+  page++;
 
 }
 
