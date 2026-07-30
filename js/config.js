@@ -18,8 +18,7 @@ const APP_CONFIG = {
 
     name: "Filmarks Dashboard",
 
-    version: "v1.0.2",
+    version: "v1.0.3",
 
-    latest: "movie.json last modified",
-
+    latest: "toolbar down",
 };
