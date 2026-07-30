@@ -41,16 +41,6 @@ function showMovieDetail(
             <span>${movie.watched_date}</span>
         </div>
 
-        <div class="detailItem">
-            <span class="detailLabel">監督</span>
-            <span>${movie.director.join(" / ")}</span>
-        </div>
-
-        <div class="detailItem">
-            <span class="detailLabel">ジャンル</span>
-            <span>${movie.genres.join(" / ")}</span>
-        </div>
-
         <div class="detailReview">
             <div class="detailLabel">
                 レビュー
