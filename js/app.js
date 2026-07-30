@@ -64,6 +64,56 @@ function refreshMovieList() {
 }
 
 /**
+ * movies.json の更新日時を表示する
+ */
+async function updateLastModified() {
+
+    try {
+
+        const response =
+            await fetch(
+                "data/movies.json",
+                {
+                    method: "HEAD"
+                }
+            );
+
+        const lastModified =
+            response.headers.get(
+                "Last-Modified"
+            );
+
+        if (!lastModified) {
+            return;
+        }
+
+        const date =
+            new Date(
+                lastModified
+            );
+
+        document
+            .getElementById(
+                "lastModified"
+            )
+            .textContent =
+            "最終更新: " +
+            date.toLocaleString(
+                "ja-JP"
+            );
+
+    } catch (error) {
+
+        console.error(
+            "Last-Modified取得失敗",
+            error
+        );
+
+    }
+
+}
+
+/**
  * アプリケーションを開始する
  */
 async function start() {
@@ -73,6 +123,8 @@ async function start() {
         updateFooter();
 
         movies = await loadMovies();
+
+        await updateLastModified();
 
         updateDashboard(movies);
         updateYearlyStats(movies);
